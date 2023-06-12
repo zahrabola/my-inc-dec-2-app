@@ -2,9 +2,9 @@ import React, { useState, useCallback } from "react";
 import './App.css';
 const functionsCounter = new Set();
 
-const howManyFunctionCalled = (increment, decrement, incrementOtherCounter) => {
-  functionsCounter.add(increment);
-  functionsCounter.add(decrement);
+const howManyFunctionCalled = ( incrementOtherCounter) => {
+  //functionsCounter.add(increment);
+  ///functionsCounter.add(decrement);
   functionsCounter.add(incrementOtherCounter);
   console.log(functionsCounter.size);
 };
@@ -15,19 +15,19 @@ export function App() {
 
   const increment = useCallback(() => {
     setCounter(counter + 1);
-    howManyFunctionCalled(increment, decrement, incrementOtherCounter);
+    howManyFunctionCalled(increment);
     console.log("Inc");
   }, [counter]);
 
   const decrement = useCallback(() => {
     setCounter(counter - 1);
-    howManyFunctionCalled(increment, decrement, incrementOtherCounter);
+    howManyFunctionCalled(decrement);
     console.log("Inc");
   }, [counter]);
 
   const incrementOtherCounter = useCallback(() => {
     setOtherCounter(otherCounter - 1);
-    howManyFunctionCalled(increment, decrement, incrementOtherCounter);
+    howManyFunctionCalled( incrementOtherCounter);
     console.log("Inc");
   }, [otherCounter]);
 
